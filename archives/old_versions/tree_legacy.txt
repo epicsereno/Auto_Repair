@@ -1,0 +1,111 @@
+.
+├── 01_Strategy_Planning
+│   ├── NEXT_STEPS.md
+│   ├── business_plan.pdf
+│   ├── goals_objectives.md
+│   ├── meeting_notes
+│   ├── quarterly_reviews
+│   └── swot_analysis.xlsx
+├── 02_Financials
+├── 03_Legal_Compliance
+├── 04_Marketing_Sales
+│   ├── campaigns
+│   ├── customer_acquisition
+│   ├── leads
+│   ├── pricing
+│   └── vehicle_history
+├── 05_Operations
+├── 06_Personnel_HR
+├── 07_Assets_Inventory
+│   ├── depreciation
+│   ├── equipment
+│   ├── tools
+│   └── vehicles
+├── 08_Reports_Analytics
+├── 09_Service_Records
+│   ├── completed_jobs
+│   ├── templates
+│   └── warranties
+├── 10_Parts_Inventory
+│   ├── catalog.csv
+│   ├── orders
+│   ├── stock_levels
+│   └── suppliers
+├── 11_Customer_History
+├── 12_Technical_Manuals
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── __pycache__
+│   └── daily_market_report.cpython-313.pyc
+├── archives
+├── config
+│   └── market_monitor_config.json
+├── daily_market_report.py
+├── data
+│   └── raw
+├── docs
+│   ├── README.md
+│   └── assets
+│       └── css
+├── index.html
+├── index.html.txt
+├── market_monitor_config.json
+├── reports
+│   ├── README.md
+│   └── daily_market_report.log
+├── scripts
+│   ├── complete_repo_scaffold.py
+│   └── daily_market_report.py
+├── src
+├── tmp
+│   ├── pasted_plan.md
+│   ├── proposed_repo
+│   │   ├── 01_Strategy_Planning
+│   │   │   ├── goals_objectives.md
+│   │   │   ├── meeting_notes
+│   │   │   └── quarterly_reviews
+│   │   ├── 02_Financials
+│   │   ├── 03_Legal_Compliance
+│   │   ├── 04_Marketing_Sales
+│   │   │   ├── campaigns
+│   │   │   ├── customer_acquisition
+│   │   │   ├── leads
+│   │   │   ├── pricing
+│   │   │   └── vehicle_history
+│   │   ├── 05_Operations
+│   │   ├── 06_Personnel_HR
+│   │   ├── 07_Assets_Inventory
+│   │   │   ├── depreciation
+│   │   │   ├── equipment
+│   │   │   ├── tools
+│   │   │   └── vehicles
+│   │   ├── 08_Reports_Analytics
+│   │   ├── 09_Service_Records
+│   │   │   ├── completed_jobs
+│   │   │   ├── templates
+│   │   │   └── warranties
+│   │   ├── 10_Parts_Inventory
+│   │   │   ├── catalog.csv
+│   │   │   ├── orders
+│   │   │   ├── stock_levels
+│   │   │   └── suppliers
+│   │   ├── 11_Customer_History
+│   │   ├── 12_Technical_Manuals
+│   │   ├── CONTRIBUTING.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── archives
+│   │   ├── config
+│   │   ├── data
+│   │   │   └── raw
+│   │   ├── docs
+│   │   ├── reports
+│   │   ├── scripts
+│   │   └── src
+│   ├── reorganize.py
+│   └── scaffold_repo.sh
+├── tree.txt
+└── trer.txt
+
+80 directories, 29 files

@@ -1,0 +1,4 @@
+{
+  "engine": "sqlite",
+  "path": "data/auto_repair.sqlite3"
+}

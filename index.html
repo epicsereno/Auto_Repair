@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision Auto Repair Operations</title>
+  <style>
+    :root {
+      --ink: #15171a;
+      --muted: #5b616b;
+      --line: #d9dde3;
+      --panel: #ffffff;
+      --bg: #f4f6f8;
+      --red: #c1121f;
+      --blue: #17456b;
+      --green: #287a4d;
+      --gold: #a66a00;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    header {
+      background: linear-gradient(rgba(12, 16, 20, 0.72), rgba(12, 16, 20, 0.72)),
+        url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&q=80&w=1600");
+      background-position: center;
+      background-size: cover;
+      color: #fff;
+      min-height: 360px;
+      display: flex;
+      align-items: end;
+      border-bottom: 5px solid var(--red);
+    }
+
+    .hero-inner,
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: 48px 0;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 1;
+      margin: 0 0 14px;
+      letter-spacing: 0;
+      max-width: 920px;
+    }
+
+    .subhead {
+      max-width: 780px;
+      margin: 0;
+      color: #e9eef4;
+      font-size: 1.08rem;
+    }
+
+    main {
+      padding: 28px 0 52px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .badge strong {
+      color: var(--ink);
+      margin-right: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(20, 24, 28, 0.05);
+    }
+
+    .metric {
+      min-height: 116px;
+      padding: 18px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.87rem;
+      margin-bottom: 10px;
+    }
+
+    .metric strong {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .metric small {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+
+    th,
+    td {
+      padding: 11px 9px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      min-height: 24px;
+      align-items: center;
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .pill.open {
+      background: #fff1d6;
+      color: var(--gold);
+    }
+
+    .pill.good {
+      background: #dff3e8;
+      color: var(--green);
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .command {
+      display: block;
+      overflow-x: auto;
+      padding: 11px;
+      border-radius: 6px;
+      background: #101419;
+      color: #e6edf5;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin: 8px 0;
+    }
+
+    footer {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 36px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero-inner">
+      <h1>Precision Auto Repair Operations</h1>
+      <p class="subhead">SQLite-backed shop management core for customers, vehicles, service orders, inventory, appointments, and conflict-safe scheduling.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <div class="badge-row">
+        <span class="badge"><strong>Runtime</strong> Python 3.11+</span>
+        <span class="badge"><strong>Storage</strong> SQLite</span>
+        <span class="badge"><strong>Branch</strong> main</span>
+      </div>
+      <span class="badge"><strong>Status</strong> Local dev server</span>
+    </div>
+
+    <section class="grid" aria-label="Shop metrics">
+      <div class="metric">
+        <span>Customers</span>
+        <strong>1</strong>
+        <small>Demo CRM record seeded</small>
+      </div>
+      <div class="metric">
+        <span>Open Service Orders</span>
+        <strong>1</strong>
+        <small>Active repair workflow</small>
+      </div>
+      <div class="metric">
+        <span>Low-Stock Parts</span>
+        <strong>1</strong>
+        <small>Inventory alert enabled</small>
+      </div>
+      <div class="metric">
+        <span>Appointments</span>
+        <strong>1</strong>
+        <small>Conflict detection tested</small>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel">
+        <h2>Operations Snapshot</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Implementation</th>
+              <th>State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Database</td>
+              <td>Customers, vehicles, employees, suppliers, parts, jobs, appointments, invoices</td>
+              <td><span class="pill good">ready</span></td>
+            </tr>
+            <tr>
+              <td>Scheduling</td>
+              <td>Bay and technician conflict checks with available slot search</td>
+              <td><span class="pill good">tested</span></td>
+            </tr>
+            <tr>
+              <td>Service Orders</td>
+              <td>Open order tracking connected to customer and vehicle records</td>
+              <td><span class="pill open">open</span></td>
+            </tr>
+            <tr>
+              <td>Reports</td>
+              <td>Daily CSV snapshot written under reports/generated</td>
+              <td><span class="pill good">generating</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="panel stack">
+        <h2>Local Commands</h2>
+        <code class="command">python -m src.main status</code>
+        <code class="command">python -m src.main available-slots 1 --hours 2.0</code>
+        <code class="command">python -m src.main book-demo-appointment</code>
+        <code class="command">python scripts/daily_market_report.py</code>
+      </aside>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel">
+        <h2>Conflict Detection</h2>
+        <ul class="list">
+          <li>Overlapping appointment windows are blocked before insert.</li>
+          <li>Bay number and technician ID can be used as resource locks.</li>
+          <li>Slot suggestions skip weekends and stay inside shop hours.</li>
+          <li>Duplicate booking smoke test returned a customer and vehicle conflict summary.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Next Build</h2>
+        <ul class="list">
+          <li>Add FastAPI routes over the existing service layer.</li>
+          <li>Render live SQLite data instead of static dashboard values.</li>
+          <li>Add tests around migrations and scheduler edge cases.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Precision Auto Repair local operations dashboard.
+  </footer>
+</body>
+</html>

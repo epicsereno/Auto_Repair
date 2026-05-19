@@ -1,0 +1,33 @@
+name: Validate Repository Structure
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate-folders:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify required directories exist
+        run: |
+          required_dirs=(
+            "01_Strategy_Planning" "02_Financials" "03_Legal_Compliance"
+            "04_Marketing_Sales" "05_Operations" "06_Personnel_HR"
+            "07_Assets_Inventory" "08_Reports_Analytics" "09_Service_Records"
+            "10_Parts_Inventory" "11_Customer_History" "12_Technical_Manuals"
+            "scripts" "config" "reports" "docs"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Missing required directory: $dir"
+              exit 1
+            else
+              echo "✅ Found: $dir"
+            fi
+          done
+
+          echo "✅ Repository structure validation passed!"

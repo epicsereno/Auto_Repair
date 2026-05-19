@@ -1,0 +1,28 @@
+.
+├── 01_Strategy_Planning
+├── 02_Financials
+├── 03_Legal_Compliance
+├── 04_Marketing_Sales
+│   └── vehicle_history
+├── 05_Operations
+├── 06_Personnel_HR
+├── 07_Assets_Inventory
+├── 08_Reports_Analytics
+├── 09_Service_Records
+├── 10_Parts_Inventory
+├── 11_Customer_History
+├── 12_Technical_Manuals
+├── README.md
+├── __pycache__
+│   └── daily_market_report.cpython-313.pyc
+├── daily_market_report.py
+├── docs
+│   └── assets
+│       └── css
+├── index.html
+├── market_monitor_config.json
+├── reports
+│   └── daily_market_report.log
+└── trer.txt
+
+19 directories, 7 files

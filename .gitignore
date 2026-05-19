@@ -1,0 +1,15 @@
+*.log
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+tmp/
+data/raw/*
+!data/raw/.gitkeep
+data/*.sqlite3
+data/backups/*
+!data/backups/.gitkeep
+reports/*.tmp
+reports/generated/*
+!reports/generated/.gitkeep
+*.bak

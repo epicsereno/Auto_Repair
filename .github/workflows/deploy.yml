@@ -1,0 +1,25 @@
+name: CD - Deploy Documentation / Reports
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '**.md'
+      - 'index.html'
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
+          target-folder: .
+          clean: false
