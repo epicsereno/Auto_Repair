@@ -4,6 +4,8 @@
 [![Industry](https://img.shields.io/badge/Industry-Automotive_Services-blue)]()
 [![Platform](https://img.shields.io/badge/Empire-OS-gold)]()
 
+**Live site:** https://epicsereno.github.io/Auto_Repair/
+
 > To provide reliable, high-quality automotive maintenance and repair services with a focus on transparency, efficiency, and customer safety.
 
 ---
@@ -88,7 +90,9 @@ parts, invoices, indexes, and timestamp triggers.
 docs, Markdown, `index.html`, `.nojekyll`, or the deploy workflow publish the
 site through `.github/workflows/deploy.yml`.
 
-In repository settings, set **Pages > Build and deployment > Source** to
+Live site: https://epicsereno.github.io/Auto_Repair/
+
+In repository settings, **Pages > Build and deployment > Source** is set to
 **GitHub Actions**.
 
 ## CI/CD
