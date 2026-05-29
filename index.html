@@ -102,6 +102,31 @@
       margin-right: 6px;
     }
 
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 11px;
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue);
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -239,6 +264,10 @@
       .content-grid {
         grid-template-columns: 1fr;
       }
+
+      .toolbar {
+        align-items: stretch;
+      }
     }
   </style>
 </head>
@@ -257,7 +286,11 @@
         <span class="badge"><strong>Storage</strong> SQLite</span>
         <span class="badge"><strong>Branch</strong> main</span>
       </div>
-      <span class="badge"><strong>Status</strong> Local dev server</span>
+      <div class="links" aria-label="Project links">
+        <a class="button" href="README.md">README</a>
+        <a class="button secondary" href="docs/schema.md">Schema</a>
+        <a class="button secondary" href="docs/architecture.md">Architecture</a>
+      </div>
     </div>
 
     <section class="grid" aria-label="Shop metrics">
@@ -350,7 +383,7 @@
   </main>
 
   <footer>
-    Precision Auto Repair local operations dashboard.
+    Precision Auto Repair GitHub Pages operations dashboard.
   </footer>
 </body>
 </html>

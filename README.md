@@ -10,8 +10,20 @@
 
 ## 📂 Repository Structure
 
+This repo intentionally separates the Python application from business operating
+artifacts. The `src/` package owns executable behavior and the SQLite data model.
+The numbered folders are planning, records, inventory, manuals, and other
+business-document buckets.
+
 | Directory | Focus |
 | :--- | :--- |
+| `src` | Python package for the CLI, SQLite schema, dataclass models, and services. |
+| `scripts` | Maintenance, backup, and report-generation scripts. |
+| `config` | JSON configuration for local tooling and reporting. |
+| `data` | Local SQLite database, raw inputs, and backups ignored by Git where appropriate. |
+| `docs` | Architecture, API direction, user docs, and schema documentation. |
+| `reports` | Generated operational report outputs. |
+| `archives` | Legacy files retained for reference during repo migration. |
 | `01_Strategy_Planning` | Business growth, market analysis, and long-term service goals. |
 | `02_Financials` | Profit/loss tracking, payroll, and equipment financing. |
 | `03_Legal_Compliance` | Licensing, insurance, and environmental safety regulations. |
@@ -39,10 +51,12 @@
 - **Storage:** SQLite at `data/auto_repair.sqlite3`
 - **Application layer:** `src/` package with dataclass models and service modules
 - **Automation:** `scripts/` for reporting, backups, and repo maintenance
+- **Static site:** `index.html` is the GitHub Pages operations dashboard entry point
 
 ## Quick Start
 
 ```bash
+cp .env.example .env
 python -m src.main init-db
 python -m src.main seed-demo
 python -m src.main status
@@ -51,9 +65,47 @@ python scripts/daily_market_report.py
 
 The generated SQLite database and report CSV files are ignored by Git so live operating data does not get committed accidentally.
 
+## CLI Commands
+
+| Command | Purpose |
+| :--- | :--- |
+| `python -m src.main init-db` | Create or update the SQLite schema. |
+| `python -m src.main seed-demo` | Insert a demo customer, vehicle, service order, and part. |
+| `python -m src.main status` | Print current customer, open-order, and low-stock counts. |
+| `python -m src.main available-slots <vehicle_id>` | Show open appointment slots for a vehicle. |
+| `python -m src.main book-demo-appointment` | Book a sample appointment for the first vehicle. |
+| `python -m src.main daily-snapshot` | Write a CSV snapshot to `reports/generated/`. |
+
+## Schema
+
+The SQLite schema is documented in [`docs/schema.md`](docs/schema.md). It covers
+customers, vehicles, employees, suppliers, service orders, jobs, appointments,
+parts, invoices, indexes, and timestamp triggers.
+
+## GitHub Pages
+
+`index.html` is the static GitHub Pages entry point. Pushes to `main` that change
+docs, Markdown, `index.html`, `.nojekyll`, or the deploy workflow publish the
+site through `.github/workflows/deploy.yml`.
+
+In repository settings, set **Pages > Build and deployment > Source** to
+**GitHub Actions**.
+
+## CI/CD
+
+GitHub Actions currently runs three workflows:
+
+- `.github/workflows/ci-cd.yml` checks Python formatting and linting on Python
+  3.11 and 3.12, validates JSON config, runs Markdown linting, and uploads daily
+  market report artifacts from `main`.
+- `.github/workflows/deploy.yml` uploads the static site artifact and deploys it
+  with GitHub Pages Actions.
+- `.github/workflows/validate-structure.yml` verifies the expected business and
+  support directories exist on pull requests.
+
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Business Roadmap
 
 - [ ] **1. Facility Selection & Leasing:** Identify and secure a 2,500+ sq ft facility with high-traffic visibility and appropriate zoning.
 - [ ] **2. Equipment Procurement:** Purchase and install hydraulic lifts, diagnostic scanners, and specialized tools.
@@ -65,8 +117,13 @@ The generated SQLite database and report CSV files are ignored by Git so live op
 - [ ] **8. Operational Workflow Setup:** Define SOPs for vehicle intake, inspection, and quality control.
 - [ ] **9. Fleet Service Outreach:** Pitch maintenance contracts to local businesses with vehicle fleets.
 - [ ] **10. Grand Opening Event:** Host a community event with free inspections and introductory offers.
-- [ ] **11. API Layer:** Add FastAPI endpoints once the local SQLite workflow is validated.
-- [ ] **12. Test Coverage:** Add focused unit tests for schema creation, service orders, and inventory reporting.
+
+## Software Roadmap
+
+- [ ] **Schema tests:** Add focused tests for schema creation and migration behavior.
+- [ ] **Service tests:** Cover service orders, inventory reorder reporting, and appointment conflicts.
+- [ ] **FastAPI layer:** Add HTTP endpoints after the local SQLite workflow is tested.
+- [ ] **Report consolidation:** Separate shop operations reports from legacy market-report scripts.
 
 ## 🚀 Key Metrics
 
